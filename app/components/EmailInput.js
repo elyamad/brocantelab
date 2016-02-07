@@ -10,7 +10,7 @@ var EmailInput = React.createClass({
     return{
       defaultValue: null,
       value: null,
-      style: 'success',
+      style: null,
       errorMsg: 'Email address is not valid'
     }
   },
@@ -31,8 +31,7 @@ var EmailInput = React.createClass({
   isValid() {
       return (this.state.style === 'success');
   },
-  componentDidUpdate() {
-    // notify parent by changes
+  componentWillMount(){
     this.props.isValid(this.isValid());
   },
   render() {
@@ -42,7 +41,7 @@ var EmailInput = React.createClass({
         label="Email"
         defaultValue={this.state.defaultValue}
         placeholder="Type your address email"
-        help={this.isValid() ? null : this.state.errorMsg}
+        help={this.isValid() || this.state.style == null ? null : this.state.errorMsg}
         bsStyle={this.validationState()}
         ref="input"
         wrapperClassName="col-xs-10"
@@ -50,6 +49,12 @@ var EmailInput = React.createClass({
         onChange={this.handleChange}
       />
     );
+  },
+  componentDidUpdate(prevProps, prevState) {
+    // notify parent by changes
+    if(this.state !== prevState){
+      this.props.isValid(this.isValid());
+    }
   }
 });
 

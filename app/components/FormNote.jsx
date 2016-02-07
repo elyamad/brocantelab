@@ -11,16 +11,18 @@ import EmailInput from './EmailInput';
 var FormNote = React.createClass({
   getInitialState() {
     return {
+      isValidNote: false,
+      isValidEmail: false
     }
   },
   isValidNote(valid) {
-    console.log("Note :", valid);
+    this.setState({isValidNote: valid});
   },
   isValidEmail(valid) {
-    console.log("Email :", valid);
+    this.setState({isValidEmail: valid});
   },
   onSubmitForm() {
-    console.log(this.state);
+    console.log('Form is valid : ', this.state.isValidNote && this.state.isValidEmail);
   },
   render() {
     return (

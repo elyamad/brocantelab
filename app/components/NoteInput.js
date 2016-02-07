@@ -10,7 +10,7 @@ var NoteInput = React.createClass({
     return{
       defaultValue: 1,
       value: null,
-      style: 'success',
+      style: null,
       errorMsg: 'Note must be between 1 and 5'
     }
   },
@@ -27,10 +27,11 @@ var NoteInput = React.createClass({
   isValid() {
       return (this.state.style === 'success');
   },
-  componentDidUpdate() {
-    // notify parent by changes
+
+  componentWillMount(){
     this.props.isValid(this.isValid());
   },
+
   render() {
     return (
       <Input
@@ -38,7 +39,7 @@ var NoteInput = React.createClass({
         label="Note"
         defaultValue={this.state.defaultValue}
         placeholder="1 to 5, eg: 3"
-        help={this.isValid() ? null : this.state.errorMsg}
+        help={this.isValid() || this.state.style == null ? null : this.state.errorMsg}
         bsStyle={this.validationState()}
         ref="input"
         wrapperClassName="col-xs-10"
@@ -46,6 +47,12 @@ var NoteInput = React.createClass({
         onChange={this.handleChange}
       />
     );
+  },
+  componentDidUpdate(prevProps, prevState) {
+    // notify parent by changes
+    if(this.state !== prevState){
+      this.props.isValid(this.isValid());
+    }
   }
 });
 
