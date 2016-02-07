@@ -1,1 +1,1 @@
-import Hello from './components/index.jsx';
+import Hello from './components/FormNote.jsx';

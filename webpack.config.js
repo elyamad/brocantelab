@@ -4,6 +4,10 @@ var webpack = require('webpack');
 module.exports = {
   entry: './app/main.js',
   output: { path: __dirname, filename: 'bundle.js' },
+  plugins: [
+      new webpack.PrefetchPlugin("react"),
+      new webpack.PrefetchPlugin("react-bootstrap")
+    ],
   module: {
     loaders: [
       {
