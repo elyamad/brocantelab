@@ -16,7 +16,7 @@ var EmailInput = React.createClass({
   },
   validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    return email ? re.test(email) : re.test(this.state.value);
   },
 
   validationState() {
@@ -28,11 +28,8 @@ var EmailInput = React.createClass({
     var newStyle = this.validateEmail(value) ? 'success' : 'error';
     this.setState({style: newStyle, value: value});
   },
-  isValid() {
-      return (this.state.style === 'success');
-  },
   componentWillMount(){
-    this.props.isValid(this.isValid());
+    this.props.isValid(this.validateEmail());
   },
   render() {
     return (
@@ -41,7 +38,7 @@ var EmailInput = React.createClass({
         label="Email"
         defaultValue={this.state.defaultValue}
         placeholder="Type your address email"
-        help={this.isValid() || this.state.style == null ? null : this.state.errorMsg}
+        help={this.validateEmail() || this.state.style == null ? null : this.state.errorMsg}
         bsStyle={this.validationState()}
         ref="input"
         wrapperClassName="col-xs-10"
@@ -53,7 +50,7 @@ var EmailInput = React.createClass({
   componentDidUpdate(prevProps, prevState) {
     // notify parent by changes
     if(this.state !== prevState){
-      this.props.isValid(this.isValid());
+      this.props.isValid(this.validateEmail(this.state.value));
     }
   }
 });

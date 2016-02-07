@@ -9,7 +9,7 @@ var NoteInput = React.createClass({
   getInitialState() {
     return{
       defaultValue: 1,
-      value: null,
+      value: 1,
       style: null,
       errorMsg: 'Note must be between 1 and 5'
     }
@@ -21,15 +21,15 @@ var NoteInput = React.createClass({
 
   handleChange(e) {
     var value = e.target.value;
-    var newStyle = (value < 1 || value > 5) ? 'error' : 'success';
+    var newStyle = this.isValid(value) ? 'success' : 'error';
     this.setState({style: newStyle, value: value});
   },
-  isValid() {
-      return (this.state.style === 'success');
+  isValid(value) {
+    return value ? !(value < 1 || value > 5) : this.isValid(this.state.value) ;
   },
 
   componentWillMount(){
-    this.props.isValid(this.isValid());
+    this.props.isValid(this.isValid(this.state.value));
   },
 
   render() {
@@ -51,7 +51,7 @@ var NoteInput = React.createClass({
   componentDidUpdate(prevProps, prevState) {
     // notify parent by changes
     if(this.state !== prevState){
-      this.props.isValid(this.isValid());
+      this.props.isValid(this.isValid(this.state.value));
     }
   }
 });

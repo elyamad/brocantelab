@@ -40,6 +40,8 @@ var MainForm = React.createClass({
     }
   },
   render() {
+    console.log("Note state : ", this.state.isValidNote);
+    console.log("Email state : ", this.state.isValidEmail);
     return (
       <div>
         <OnResult
