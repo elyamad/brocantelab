@@ -1,0 +1,11 @@
+body {
+  padding-top: 80px;
+}
+.header {
+  height: 100px;
+  background-color: #FFFFEB;
+}
+.main {
+  padding: 80px 50px;
+  text-align: center;
+}
