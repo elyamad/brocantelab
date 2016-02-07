@@ -1,9 +1,9 @@
 # Scripts for deploying me
 
 ## Requirements
-npm version : 1.4.9
+npm version : *1.4.9 [`https://github.com/npm/npm/releases/tag/v1.4.9`] (https://github.com/npm/npm/releases/tag/v1.4.9)*
 
-node version : 0.11.13
+node version : *0.11.13 [`https://nodejs.org/en/download/releases/`] (https://nodejs.org/en/download/releases/)*
 
 ## Setup
 Clone the repository:
