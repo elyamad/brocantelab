@@ -16,6 +16,11 @@ npm start
 Browse to http://localhost:8080
 ```
 
+## Some screenshots
+
+![OK](http://i.imgur.com/1ApGmHT.png)
+![KO](http://i.imgur.com/qWdsANc.png)
+
 License
 -------
 
