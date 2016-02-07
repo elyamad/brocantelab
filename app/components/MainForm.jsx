@@ -30,18 +30,17 @@ var MainForm = React.createClass({
   },
   onSubmitForm() {
     var isFormValid = this.state.isValidNote && this.state.isValidEmail;
+    var newState;
     if(isFormValid){
-      var newState = {visible: true, value: 'success', headerMsg: 'Thank you !', contentMsg: 'Your note was sent successfully'};
+      newState = {visible: true, value: 'success', headerMsg: 'Thank you !', contentMsg: 'Your note was sent successfully'};
       this.setState({result: newState});
     }
     else {
-      var newState = {visible: true, value: 'danger', headerMsg: 'Error !', contentMsg: 'An error has occurred, please check your form data and try again.'};
+      newState = {visible: true, value: 'danger', headerMsg: 'Error !', contentMsg: 'An error has occurred, please check your form data and try again.'};
       this.setState({result: newState});
     }
   },
   render() {
-    console.log("Note state : ", this.state.isValidNote);
-    console.log("Email state : ", this.state.isValidEmail);
     return (
       <div>
         <OnResult
@@ -55,7 +54,7 @@ var MainForm = React.createClass({
           <form className="form-horizontal">
             <NoteInput isValid={this.isValidNote} />
             <EmailInput isValid={this.isValidEmail} />
-            <Input type="textarea" label="Comment" placeholder="Put your comment"labelClassName="col-xs-2" wrapperClassName="col-xs-10" />
+            <Input type="textarea" label="Comment" placeholder="Type your comment ..."labelClassName="col-xs-2" wrapperClassName="col-xs-10" />
             <Button bsStyle="primary" disabled={this.state.disabled} onClick={this.onSubmitForm} className="pull-right"> Send </Button>
           </form>
         </Panel>
